@@ -19,7 +19,7 @@ pipeline {
 	}
         stage('Build') {
             steps {
-                  dir('src') {
+                  dir('java-maven-app/src') {
 		    sh 'mvn clean install'
             }
           }
