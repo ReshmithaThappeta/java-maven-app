@@ -10,7 +10,13 @@ pipeline {
                 git 'https://github.com/ReshmithaThappeta/java-maven-app.git'
             }
         }
-
+        stage('Debug Workspace') {
+    steps {
+        sh 'pwd'      // Should show the full path ending with java-maven-app/src
+        sh 'ls -la'   // Should list pom.xml and Jenkinsfile here
+    	sh 'ls -la src'
+           }
+	}
         stage('Build') {
             steps {
                   dir('src') {
