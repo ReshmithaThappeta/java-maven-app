@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven 3.8.1' // Defined in Jenkins -> Global Tool Configuration
+        jdk 'JDK 11'         // Also defined in Jenkins global settings
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/ReshmithaThappeta/java-maven-app.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+    }
+}
+
