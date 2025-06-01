@@ -19,23 +19,19 @@ pipeline {
 	}
         stage('Build') {
             steps {
-                  dir('java-maven-app/src') {
 		    sh 'mvn clean install'
-            }
           }
 	}
 
 	stage('Test') {
    		 steps {
-       		     dir('java-maven-app/src') {
           	      sh 'mvn test'
           }
-    	 }
 	}
 
         stage('Package') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'java-maven-app/target/*.jar'
             }
         }
     }
