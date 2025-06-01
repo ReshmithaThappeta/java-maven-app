@@ -36,7 +36,7 @@ pipeline {
         stage('Package') {
             steps {
 		 dir('java-maven-app') {
-                archiveArtifacts artifacts: 'java-maven-app/target/*.jar'
+                archiveArtifacts artifacts: 'target/*.jar'
             }
           }
 	}
