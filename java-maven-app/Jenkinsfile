@@ -25,11 +25,13 @@ pipeline {
           }
 	}
 
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+	stage('Test') {
+   		 steps {
+       		     dir('java-maven-app') {
+          	      sh 'mvn test'
+          }
+    	 }
+	}
 
         stage('Package') {
             steps {
